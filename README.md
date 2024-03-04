@@ -1,9 +1,8 @@
 # Science communication tools for NINA
 
-This is a place where we can collect code and ideas for communication tools within NINA. It probably makes sense to split up most software we develop, e.g. in separate repositories, but this could function as a central hub.
+**This is a place where we can collect code and ideas for communication tools within NINA. It probably makes sense to split up most software we develop, e.g. in separate repositories, but this could function as a central hub.**
 
-
-Here we can list things we like to se made:
+List of things we like to se get made:
 
 1. Document templates for scripting languages (R / Python / etc.)
     1. NINA reports
@@ -17,12 +16,15 @@ Here we can list things we like to se made:
     2. ~~ggplot2 color scale functions~~
         1. Improvements
     3. ~~Add logo to figures~~
-3.  Shiny/Quarto templates
+3.  Shiny/Quarto
     1. SCSS-file for Bootstrap
     2. Example templates
         1. Dashboards
         2. Storyboards
         3. Modularised tabbed shiny app
+    3. Tutorial for publicizing app on a NINA project page.
+    4. Solve R-version conflicts across Rstudio servers.
+    5. Workflow to containerize shiny apps
     
     
 

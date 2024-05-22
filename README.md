@@ -17,6 +17,7 @@ List of things we like to se get made:
         1. Improvements
     3. ~~Add logo to figures~~
 3.  Shiny/Quarto
+    responsible: Jens, Anders K., ... 
     1. SCSS-file for Bootstrap
     2. Example templates
         1. Dashboards
@@ -25,6 +26,18 @@ List of things we like to se get made:
     3. Tutorial for publicizing app on a NINA project page.
     4. Solve R-version conflicts across Rstudio servers.
     5. Workflow to containerize shiny apps
+4. Streamlit
+    responsible: Willeke, Reto, Francesco, ... 
+    1. Template with NINA style
+    2. Classes for simple geotools
+       - drawing polygons and saving in db (for example BigQuery)
+       - 
+4. Map Portals
+   responsible: Niccolò, Francesco, Willeke, Monica, ... 
+   1. NINA map portal (maps.nina.no)
+      - import schema for new datasets
+      - import schema for Ecosystem Accounting datasets (started)
+      - sync with Living Norway 
+    2. AGOL
+       - template for Experience Builder/Story Maps etc.
     
-    
-

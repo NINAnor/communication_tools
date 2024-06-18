@@ -5,6 +5,9 @@
 List of things we like to see get made:
 
 1. Document templates for scripting languages (R / Python / etc.)
+   *Read and in depth discussion [here](./docs/NINA_templates.md).*
+    **Have experience:** Jens, Anders K., Francesco, Niccolò, Willeke, *add your name to the list*
+    1. ggplot2-theme
     1. NINA reports
         1. ~~PDF~~
         2.  Html (started)
@@ -12,13 +15,13 @@ List of things we like to see get made:
     3. NINA presentation
         1. RevealJS (presentations)
 2. R graphics
+    **Have experience:** Jens, Anders K., *add your name to the list*
     1. ggplot2-theme
     2. ~~ggplot2 color scale functions~~
         1. Improvements
     3. ~~Add logo to figures~~
 3.  Shiny/Quarto
-   
-    **responsible:** Jens, Anders K., ... 
+    **Have experience:** Jens, Anders K., Willeke, Kjetil G., *add your name to the list*   
     1. SCSS-file for Bootstrap
     2. Example templates
         1. Dashboards
@@ -27,17 +30,14 @@ List of things we like to see get made:
     3. Tutorial for publicizing app on a NINA project page.
     4. Solve R-version conflicts across Rstudio servers.
     5. Workflow to containerize shiny apps
-
 5. Streamlit
-
-   **responsible:** Willeke, Reto, Francesco, ... 
+   **Have experience:** Willeke, Reto, Francesco, *add your name to the list*  
     1. Template with NINA style
     2. Classes for simple geotools
        - drawing polygons and saving in db (for example BigQuery)
        - downloading rasters by drawing a box
 4. Map Portals
-   
-    **responsible:** Niccolò, Francesco, Willeke, Monica, ... 
+    **Have experience::** Niccolò, Francesco, Willeke, Monica, *add your name to the list*  
    1. NINA map portal (maps.nina.no)
       - import schema for new datasets
       - import schema for Ecosystem Accounting datasets (started)

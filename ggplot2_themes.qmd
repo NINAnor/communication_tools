@@ -1,0 +1,244 @@
+---
+title: "Look at possible ggplot2 themes"
+format:
+  html:
+    toc: true
+editor: visual
+---
+
+## Available ggplot themes 
+
+There are several "ready-made" ggplot themes that one can choose when creating a graph. These come form the ggplot2 and the ggthemes package. Some organisations, for example the BBC, have developed their own themes in a similar way to what we hope to do.
+
+```{r download data from living Norway}
+#| echo: false
+#| warning: false
+#| message: false
+###############################################################
+# To download Living Norway Data and import it directly       #
+# in to R you can use any of these code suggestions.          #
+# Using LivingNorwayR there is a simple function for          #
+# creating a Darwin Core Archive "object" in R (an R6 Class). #
+# This has options for specifying the version of the data     #
+# An approach using other packages is also shown. The code is #
+# commented out (#) so to run it you will need to delete the  #
+# comment symbol (#). 
+###############################################################
+## First load packages and install those that are missing
+packages = c("tidyverse", "readr", "devtools", "EML")
+package.check <- lapply(
+  packages,
+  FUN = function(x) {
+    if (!require(x, character.only = TRUE)) {
+      install.packages(x, dependencies = TRUE)
+      library(x, character.only = TRUE)
+    }
+  }
+)
+## Get the dataset using the key: 
+datasetKey <- "69e0cd24-c934-45d4-afd3-a28fe3f37e92"
+
+########################################################
+## Use LivingNorwayR to extract the Archive
+## LivingNorwayR is not on CRAN yet so we need to have a seperate approach to install from github
+if(!require("LivingNorwayR", character.only = TRUE)){
+  devtools::install_github("LivingNorway/LivingNorwayR")
+  library(LivingNorwayR, character.only = TRUE)
+ }
+ 
+Archive <-getLNportalData(datasetKey = datasetKey)
+core<-Archive$getCoreTable()
+extensions<-Archive$getExtensionTables()
+eml<-Archive$getMetadata()
+
+core_data<-core$exportAsDataFrame()
+extensions_data<-extensions[[1]]$exportAsDataFrame()
+```
+
+```{r join data}
+#| echo: false
+#| warning: false
+#| message: false
+combined_data<-core_data |> 
+  left_join(extensions_data, by="eventID")
+  
+```
+
+```{r create a dataframe for plotting}
+#| echo: false
+#| warning: false
+#| message: false
+plotting_data<-combined_data |> 
+  filter(occurrenceStatus=="present") |> 
+  group_by(locality,scientificName, occurrenceRemarks, year) |> 
+  tally()
+```
+
+```{r basic plot}
+#| echo: false
+#| warning: false
+#| message: false
+
+p<-plotting_data |>
+  filter(scientificName=="Vulpes vulpes") |> 
+  ggplot(aes(year,n, colour=locality)) +
+    scale_x_continuous(breaks = min(plotting_data$year):max(plotting_data$year))+
+  labs(x="Year", y="Number of photographs")+
+  geom_point(size=3)+
+  NinaR::scale_color_nina()+
+  ggtitle("Number of camera-trap images for Red Fox")
+  
+```
+
+### ggplot themes from ggplot2
+
+```{r base plot themes}
+#| echo: true
+#| warning: false
+#| message: false
+#| fig-width: 10
+#| fig-height: 11
+p+theme_gray() #default (# running p with no theme argument gives the same plot theme)
+p+theme_bw()
+p+theme_classic()
+p+theme_dark()
+p+theme_light()
+p+theme_linedraw()
+p+theme_minimal()
+p+theme_void()
+```
+
+### ggplot themes from ggthemes
+
+```{r ggthemes themes}
+#| echo: true
+#| warning: false
+#| message: false
+#| fig-width: 10
+#| fig-height: 11
+p+ggthemes::theme_base()
+p+ggthemes::theme_calc()
+p+ggthemes::theme_clean()
+p+ggthemes::theme_economist()
+p+ggthemes::theme_economist_white()
+p+ggthemes::theme_excel()
+p+ggthemes::theme_excel_new()
+p+ggthemes::theme_few()
+p+ggthemes::theme_fivethirtyeight()
+p+ggthemes::theme_foundation()
+p+ggthemes::theme_gdocs()
+p+ggthemes::theme_hc()
+p+ggthemes::theme_igray()
+p+ggthemes::theme_map()
+p+ggthemes::theme_pander()
+p+ggthemes::theme_par()
+p+ggthemes::theme_solarized()
+p+ggthemes::theme_solarized_2()
+p+ggthemes::theme_solid()
+p+ggthemes::theme_stata()
+p+ggthemes::theme_tufte()
+p+ggthemes::theme_wsj()
+```
+
+### ggplot themes from the BBC
+
+```{r bbc theme}
+#| echo: true
+#| warning: false
+#| message: false
+#| fig-width: 14
+#| fig-height: 11
+p+bbplot::bbc_style()
+```
+
+### ggplot themes from hrbrthemes
+
+```{r}
+#| echo: true
+#| warning: false
+#| message: false
+#| fig-width: 14
+#| fig-height: 11
+p+hrbrthemes::theme_ft_rc()
+p+hrbrthemes::theme_ipsum()
+p+hrbrthemes::theme_ipsum_es()
+p+hrbrthemes::theme_ipsum_ps()
+p+hrbrthemes::theme_ipsum_pub()
+p+hrbrthemes::theme_ipsum_rc()
+p+hrbrthemes::theme_ipsum_tw()
+p+hrbrthemes::theme_modern_rc()
+p+hrbrthemes::theme_tinyhand()
+```
+
+
+
+
+
+## Creating our own ggplot themes
+
+To create our own theme we can adapt previous themes and modify elements of the plot.
+
+```{r playing with themes}
+#| echo: true
+#| warning: false
+#| message: false
+#| fig-width: 10
+#| fig-height: 11
+
+
+custom_NINA_theme <- function() {
+  theme(
+    # add border 
+    panel.border = element_rect(colour = "white", fill = NA, linetype = 2),
+    # colour background     
+    panel.background = element_rect(fill = "white"),
+    # modify grid
+    panel.grid.major.x = element_line(colour = "#93328E", linetype = 3, size = 0.5),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y =  element_line(colour = "#93328E", linetype = 3, size = 0.5),
+    panel.grid.minor.y = element_blank(),
+    #modify text, axis and colour 
+    axis.text = element_text(colour = "#E57200", face = "italic", family = "Times New Roman", size=12),
+    axis.title = element_text(colour = "#E57200", family = "Times New Roman", size=20),
+    axis.ticks = element_line(colour = "#E57200"),
+    # legend at the bottom
+    legend.position = "bottom"
+    
+  )
+}
+
+p+custom_NINA_theme()
+
+```
+
+```{r more play with themes}
+#| echo: true
+#| warning: false
+#| message: false
+#| fig-width: 10
+#| fig-height: 11
+
+NINA_theme2 <-function(){
+  theme(
+  plot.title = element_text(size = 16, face = "bold"), # Font size set to 16 and bold.
+  axis.title = element_text(size = 14), # Font size set to 12.
+  axis.text = element_text(size = 10), # Font size set to 10.
+  legend.title = element_text(size = 12, face = "bold"), # Font size of the title of the legend set to 12 and bold.
+  legend.text = element_text(size = 10), # font size of the text in the legend
+  panel.background = element_rect(fill = "#A2AAAD"), # colour of the panel background
+  panel.grid.major = element_line(color = "#E57200", linetype = "dashed"), # colour and type of the panel lines
+  panel.grid.minor = element_blank(), # invisible auxiliary grids
+  plot.background = element_rect(fill = "#A2AAAD"), # plot's background
+  plot.margin = margin(1, 1, 1, 1, "cm"), # chart margins
+  strip.background = element_rect(fill = "#A2AAAD", color = "#FFB25B"), # strip background
+  strip.text = element_text(size = 12, face = "bold"), # strip texts
+  plot.title.position = "plot", #position of the plot title
+  legend.position = "right", # position of the legend
+  legend.box.background = element_rect(color = "#A2AAAD"), # background of the plot
+  legend.key.size = unit(1, "cm") # size of the legends key
+)
+  
+} 
+p+NINA_theme2()
+```
+

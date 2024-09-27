@@ -15,12 +15,13 @@ List of things we like to see get made:
     3. NINA presentation
         1. RevealJS (presentations)
 2. R graphics
-    **Have experience:** Jens, Anders K., *add your name to the list*
+    **Have experience:** Jens, Anders K., Reto*
     1. ggplot2-theme
         1. Build on Matt's start
     2. ~~ggplot2 color scale functions~~
         1. Improvements
     3. ~~Add logo to figures~~
+    4. Plotly theme for interactive plots
 3.  Shiny/Quarto
     **Have experience:** Jens, Anders K., Willeke, Kjetil G., *add your name to the list*   
     1. SCSS-file for Bootstrap

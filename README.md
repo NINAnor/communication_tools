@@ -10,13 +10,14 @@ List of things we like to see get made:
     1. ggplot2-theme
     1. NINA reports
         1. ~~PDF~~
-        2.  Html (started)
+        2. ~~Html~~
     2. NINA data reports
     3. NINA presentation
         1. RevealJS (presentations)
 2. R graphics
     **Have experience:** Jens, Anders K., *add your name to the list*
     1. ggplot2-theme
+        1. Build on Matt's start
     2. ~~ggplot2 color scale functions~~
         1. Improvements
     3. ~~Add logo to figures~~

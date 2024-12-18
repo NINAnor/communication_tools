@@ -35,6 +35,20 @@ List of things we like to see get made:
 5. Streamlit
    **Have experience:** Willeke, Reto, Francesco, *add your name to the list*  
     1. Template with NINA style
+    # streamlit-geospatial
+
+    A streamlit multipage with a draft NINA design. It can be deployed to [Streamlit Cloud](https://streamlit.io/cloud)
+
+    ## Instructions
+
+    1. Add content and graphics to the home.py
+    2. Customize the sidebar by changing the sidebar text and logo in each Python file.
+    3. Setup your ee credentials following this [tutorial]()
+    4. Add a new app/page to the `pages/` directory, the sidebar will automatically include these as sides. 
+
+    **Note:** For the template code from the [streamlit-geospatial repository](https://github.com/opengeos/streamlit-geospatial) has been used.
+
+
     2. Classes for simple geotools
        - drawing polygons and saving in db (for example BigQuery)
        - downloading rasters by drawing a box
